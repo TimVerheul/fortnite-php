@@ -1,4 +1,5 @@
 <?php
+
 namespace Fortnite;
 
 use Fortnite\FortniteClient;
@@ -24,7 +25,7 @@ class Store
             );
             return $data;
         } catch (GuzzleException $e) {
-            if ($e->getResponse()->getStatusCode() == 404) throw new \Exception('Unable to obtain store info.');
+            if ($e->getCode() == 404) throw new \Exception('Unable to obtain store info.');
             throw $e;
         }
     }

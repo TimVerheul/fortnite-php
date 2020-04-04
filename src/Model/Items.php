@@ -1,15 +1,18 @@
 <?php
+
 namespace Fortnite\Model;
 
-class Items {
+class Items
+{
     private $items;
 
     /**
      * Constructs a new Fortnite\Model\Items instance.
      * @param object $items   Item objects
      */
-    public function __construct($items) {
-        $this->items = $this->parseItems((array)$items);
+    public function __construct($items)
+    {
+        $this->items = $this->parseItems((array) $items);
     }
 
     /**
@@ -17,7 +20,8 @@ class Items {
      * @param  string $id Item id
      * @return object     The item (null if not found)
      */
-    public function id($id) {
+    public function id($id)
+    {
         foreach ($this->items as $item) {
             if ($item->itemId == $id) return $item;
         }
@@ -29,7 +33,8 @@ class Items {
      * Returns all owned items.
      * @return array The items
      */
-    public function all() {
+    public function all()
+    {
         return $this->items;
     }
 
@@ -43,7 +48,8 @@ class Items {
      * @param  array $items Items
      * @return array        Actual items
      */
-    private function parseItems($items) {
+    private function parseItems($items)
+    {
         $actual = [];
         foreach ($items as $key => $item) {
             if (strpos($item->templateId, "Quest:") !== false) continue;

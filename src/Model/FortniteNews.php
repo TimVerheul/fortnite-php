@@ -7,9 +7,11 @@ class FortniteNews
     public $image = null;
     public $hidden = null;
     public $spotlight = null;
-    public $title = null;
+    public $message_type = null;
+    public $ad_space = null;
 
     /**
+     * TODO: refactor this Model
      * Constructs a new Fortnite\Model\FortniteNews instance.
      * @param array $stats Array of mapped news
      */
@@ -33,12 +35,17 @@ class FortniteNews
                 case "spotlight":
                     $this->spotlight = $value;
                     break;
+                case "messagetype":
+                    $this->message_type = $value;
+                    break;
+                case "adspace":
+                    $this->ad_space = $value;
+                    break;
                 case "_type":
                     break;
                 default:
                     throw new \Exception('News name ' . $key . ' is not supported');
             }
         }
-
     }
 }
