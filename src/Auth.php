@@ -103,7 +103,7 @@ class Auth
         $data = FortniteClient::sendUnrealClientPostRequest($client, FortniteClient::EPIC_OAUTH_TOKEN_ENDPOINT, [
             'grant_type' => 'refresh_token',
             'refresh_token' => $refresh_token,
-            'token_type' => 'eg1',
+            'token_type' => 'eg1'
         ], FortniteClient::FORTNITE_AUTHORIZATION);
 
         if (!$data->access_token) {
@@ -134,7 +134,7 @@ class Auth
             'grant_type' => 'device_auth',
             'device_id' => $device_id,
             'account_id' => $account_id,
-            'secret' => $secret,
+            'secret' => $secret
         ]);
         $client = new Client(['cookies' => true]);
 
@@ -150,13 +150,14 @@ class Auth
         if (!isset($data->access_token)) {
             throw new \Exception($data->errorMessage);
         }
+
         return new self(
             $data->access_token,
             $data->in_app_id,
             $data->refresh_token,
             $data->account_id,
             $data->expires_in,
-            $data->refresh_expires,
+            $data->refresh_expires
         );
     }
 
@@ -171,7 +172,7 @@ class Auth
         $requestParams = array_merge($requestParams, [
             'grant_type' => 'exchange_code',
             'exchange_code' => $code,
-            'includePerms' => true,
+            'includePerms' => true
         ]);
 
         $client = new Client(['cookies' => true]);
@@ -196,7 +197,7 @@ class Auth
             'refresh_token' => $data->refresh_token,
             'account_id' => $data->account_id,
             'expires_in' => $data->expires_in,
-            'refresh_expires' => $data->refresh_expires,
+            'refresh_expires' => $data->refresh_expires
         ];
 
         $data = FortniteClient::account_generate_device_auth($client, $data->account_id, $data->access_token);
@@ -210,7 +211,7 @@ class Auth
             $tokens['refresh_token'],
             $tokens['account_id'],
             $tokens['expires_in'],
-            $tokens['refresh_expires'],
+            $tokens['refresh_expires']
         );
     }
 
@@ -246,7 +247,7 @@ class Auth
             'grant_type' => 'exchange_code',
             'exchange_code' => $dataParam->code,
             'username' => $email,
-            'password' => $password,
+            'password' => $password
         ]);
 
         // First, we need to get a token for the Unreal Engine client
@@ -284,7 +285,7 @@ class Auth
             $data->refresh_token,
             $data->account_id,
             $data->expires_in,
-            $data->refresh_expires,
+            $data->refresh_expires
         );
     }
 
@@ -356,7 +357,7 @@ class Auth
         $data = [
             'deviceId' => $device_id,
             'accountId' => $account_id,
-            'secret' => $secret,
+            'secret' => $secret
         ];
         $fp = fopen(dirname(__FILE__) . '/deviceAuth.json', 'w');
         fwrite($fp, json_encode($data));
