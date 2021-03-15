@@ -181,9 +181,9 @@ class Auth
 
         $data = FortniteClient::deviceAuth($client, FortniteClient::EPIC_OAUTH_TOKEN_ENDPOINT, $requestParams, $dataToken);
 
-        // Exchange code not valid. You can only use it once and generate it here:
-        // https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fexchange
-        if ($data->errorCode === 'errors.com.epicgames.account.oauth.exchange_code_not_found') {
+        // Exchange code not valid. Read here how to generate one:
+        // https://github.com/xMistt/fortnitepy-bot/wiki/Exchange-Code
+        if (isset($data->errorCode) && $data->errorCode === 'errors.com.epicgames.account.oauth.exchange_code_not_found') {
             exit('invalid exchange code');
         }
 
@@ -237,7 +237,7 @@ class Auth
         }
 
         // Got a captcha error. Use exchangeAuth to login or use exchangeAuth to set the DeviceAuth credentials.
-        if ($data->errorCode === 'errors.com.epicgames.common.two_factor_authentication.required') {
+        if (isset($data->errorCode) && $data->errorCode === 'errors.com.epicgames.common.two_factor_authentication.required') {
             exit('captcha error');
         }
 

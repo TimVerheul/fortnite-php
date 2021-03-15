@@ -2,9 +2,6 @@
 Interact with the official Fortnite API using PHP.
 As the original fortnite-php project isn't maintained anymore, you can use this one. I will do my best to actively maintain it.
 
-[![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)]()
-[![Packagist](https://img.shields.io/packagist/v/Tustin/fortnite-php.svg)]()
-
 ## Installation
 Pull in the project using composer:
 `composer require Tustin/fortnite-php`
